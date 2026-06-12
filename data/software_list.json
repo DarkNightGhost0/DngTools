@@ -1,0 +1,158 @@
+[
+  {
+    "name": "微信",
+    "category": "社交",
+    "sources": [
+      { "type": "direct", "url": "https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "微信", "paths": ["C:\\Program Files\\Tencent\\WeChat\\WeChat.exe", "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe"] }
+  },
+  {
+    "name": "QQ",
+    "category": "社交",
+    "sources": [
+      { "type": "winget", "id": "Tencent.QQ" },
+      { "type": "direct", "url": "https://dldir1.qq.com/qqfile/qq/PCQQ9.7.17/QQ9.7.17.29225.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "腾讯QQ", "paths": ["C:\\Program Files\\Tencent\\QQNT\\QQ.exe", "C:\\Program Files (x86)\\Tencent\\QQ\\Bin\\QQ.exe"] }
+  },
+  {
+    "name": "谷歌浏览器",
+    "category": "效率",
+    "sources": [
+      { "type": "direct", "url": "https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B00000000-0000-0000-0000-000000000000%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Dempty/update2/installers/ChromeSetup.exe" }
+    ],
+    "install": { "method": "silent", "args": "/silent /install", "fallback": "manual" },
+    "verify": { "registry": "Google Chrome", "paths": ["C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"] }
+  },
+  {
+    "name": "7-Zip",
+    "category": "效率",
+    "sources": [
+      { "type": "winget", "id": "7zip.7zip" },
+      { "type": "direct", "url": "https://www.7-zip.org/a/7z2409-x64.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "7-Zip", "paths": ["C:\\Program Files\\7-Zip\\7z.exe"] }
+  },
+  {
+    "name": "Visual Studio Code",
+    "category": "开发",
+    "sources": [
+      { "type": "direct", "url": "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user" },
+      { "type": "winget", "id": "Microsoft.VisualStudioCode" }
+    ],
+    "install": { "method": "silent", "args": "/VERYSILENT /NORESTART /MERGETASKS=!runcode", "fallback": "manual" },
+    "verify": { "registry": "Microsoft Visual Studio Code", "paths": ["C:\\Users\\{USER}\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"] }
+  },
+  {
+    "name": "Python",
+    "category": "开发",
+    "sources": [
+      { "type": "winget", "id": "Python.Python.3" },
+      { "type": "direct", "url": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe" }
+    ],
+    "install": { "method": "silent", "args": "/quiet InstallAllUsers=1 PrependPath=1 Include_test=0", "fallback": "manual" },
+    "verify": { "registry": "Python 3", "paths": ["C:\\Program Files\\Python311\\python.exe"] }
+  },
+  {
+    "name": "Git",
+    "category": "开发",
+    "sources": [
+      { "type": "winget", "id": "Git.Git" },
+      { "type": "direct", "url": "https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe" }
+    ],
+    "install": { "method": "silent", "args": "/VERYSILENT /NORESTART", "fallback": "manual" },
+    "verify": { "registry": "Git", "paths": ["C:\\Program Files\\Git\\bin\\git.exe"] }
+  },
+  {
+    "name": "Notepad++",
+    "category": "开发",
+    "sources": [
+      { "type": "winget", "id": "Notepad++.Notepad++" },
+      { "type": "direct", "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.6.9/npp.8.6.9.Installer.x64.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "Notepad++", "paths": ["C:\\Program Files\\Notepad++\\notepad++.exe", "C:\\Program Files (x86)\\Notepad++\\notepad++.exe"] }
+  },
+  {
+    "name": "VLC 媒体播放器",
+    "category": "影音",
+    "sources": [
+      { "type": "winget", "id": "VideoLAN.VLC" },
+      { "type": "direct", "url": "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "VLC media player", "paths": ["C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"] }
+  },
+  {
+    "name": "PotPlayer",
+    "category": "影音",
+    "sources": [
+      { "type": "direct", "url": "https://t1.daumcdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "PotPlayer", "paths": ["C:\\Program Files\\DAUM\\PotPlayer\\PotPlayerMini64.exe"] }
+  },
+  {
+    "name": "搜狗输入法",
+    "category": "效率",
+    "sources": [
+      { "type": "direct", "url": "https://ime.sogou.com/tool/dl/redirect?p=win" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "搜狗输入法" }
+  },
+  {
+    "name": "腾讯会议",
+    "category": "效率",
+    "sources": [
+      { "type": "winget", "id": "Tencent.TencentMeeting" },
+      { "type": "direct", "url": "https://updatecdn.meeting.qq.com/cos/20240417121558/TMRInstaller_1410000391_3.27.2.407.publish.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "腾讯会议", "paths": ["C:\\Program Files\\Tencent\\WeMeet\\wemeetapp.exe"] }
+  },
+  {
+    "name": "Everything",
+    "category": "效率",
+    "sources": [
+      { "type": "winget", "id": "voidtools.Everything" },
+      { "type": "direct", "url": "https://www.voidtools.com/Everything-1.4.1.1024.x64-Setup.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "Everything", "paths": ["C:\\Program Files\\Everything\\Everything.exe"] }
+  },
+  {
+    "name": "Steam",
+    "category": "游戏",
+    "sources": [
+      { "type": "winget", "id": "Valve.Steam" },
+      { "type": "direct", "url": "https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "Steam", "paths": ["C:\\Program Files (x86)\\Steam\\Steam.exe"] }
+  },
+  {
+    "name": "火绒安全",
+    "category": "效率",
+    "sources": [
+      { "type": "winget", "id": "Huorong.Huorong" },
+      { "type": "direct", "url": "https://down5.huorong.cn/sysdiag-all-6.0.2.2-2024.05.22.1.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "火绒安全软件" }
+  },
+  {
+    "name": "Adobe Acrobat Reader",
+    "category": "效率",
+    "sources": [
+      { "type": "winget", "id": "Adobe.Acrobat.Reader.64-bit" },
+      { "type": "direct", "url": "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2400220493/AcroRdrDC2400220493_zh_CN.exe" }
+    ],
+    "install": { "method": "silent", "args": "/sAll /rs /msi EULA_ACCEPT=YES", "fallback": "manual" },
+    "verify": { "registry": "Adobe Acrobat" }
+  }
+]
