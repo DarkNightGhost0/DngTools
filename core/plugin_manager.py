@@ -26,7 +26,7 @@ class PluginManager:
         if parent not in sys.path:
             sys.path.insert(0, parent)
 
-        for entry in sorted(self.plugins_dir.iterdir()):
+        for entry in sorted(self.plugins_dir.iterdir(), key=lambda e: (0 if e.name == "home_page" else 1, e.name)):
             if not entry.is_dir():
                 continue
             if entry.name.startswith("_") or entry.name.startswith("."):

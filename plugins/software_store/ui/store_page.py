@@ -67,6 +67,7 @@ class StorePage(QWidget):
     """软件商店页面 - 分类标签 + 搜索 + 软件列表"""
 
     install_requested = Signal(str)  # name
+    list_refreshed = Signal()  # 列表刷新后发出，供外部重新检查安装状态
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -166,6 +167,8 @@ class StorePage(QWidget):
 
             # 存储引用防止被 GC
             item.setData(Qt.UserRole, card)
+
+        self.list_refreshed.emit()
 
     def get_card_by_name(self, name: str) -> SoftwareCard | None:
         """按名称获取卡片（用于更新状态）"""

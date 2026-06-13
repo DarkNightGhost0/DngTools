@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 6e13dd71adeb46b2c8b27ab5508ca0b9_85167a9566b611f1a99c5254007bceed
+    ReservedCode1: sd73yhM2/Z7ebiCmpYO/kP20qgaHxna/6r7DxnL3YnGef2PdCMOtBpDKgiGejsq97OL3pn2VmyygzlX38Hp1jtkwlravX07cGab8PquTzjK5dUhq8UQJPc40FMtzBwLeI5KQ5jdlJh+iFaigpIztYkmQleT+ON215O8Fcvyi5p0e2IOQR5U0S7vr7qA=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 6e13dd71adeb46b2c8b27ab5508ca0b9_85167a9566b611f1a99c5254007bceed
+    ReservedCode2: sd73yhM2/Z7ebiCmpYO/kP20qgaHxna/6r7DxnL3YnGef2PdCMOtBpDKgiGejsq97OL3pn2VmyygzlX38Hp1jtkwlravX07cGab8PquTzjK5dUhq8UQJPc40FMtzBwLeI5KQ5jdlJh+iFaigpIztYkmQleT+ON215O8Fcvyi5p0e2IOQR5U0S7vr7qA=
+---
+
 # DngTools - Windows 11 工具箱
 
 重装系统后一键装回常用软件。
@@ -63,3 +74,4 @@ pyinstaller --onefile --windowed --add-data "data;data" main.py
 ## 技术栈
 
 Python 3.11 + PySide6 + Aria2
+*（内容由AI生成，仅供参考）*

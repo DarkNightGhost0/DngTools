@@ -45,6 +45,9 @@ class SoftwareStorePlugin(BasePlugin):
         event_bus.download_progress.connect(self._on_download_progress)
         event_bus.install_started.connect(self._on_install_started)
 
+        # 列表刷新后重新检查安装状态（分类切换/搜索后状态保持）
+        self._store_page.list_refreshed.connect(self._check_all_installed)
+
         # 启动时检测已安装软件
         self._check_all_installed()
 
@@ -74,11 +77,20 @@ class SoftwareStorePlugin(BasePlugin):
         install_info = self._repo.get_install_info(software)
         verify = self._repo.get_verify(software)
 
+        # 获取 winget_id（winget 源时使用）
+        winget_id = ""
+        if source_type == "winget":
+            for source in software.get("sources", []):
+                if source.get("type") == "winget":
+                    winget_id = source.get("id", "")
+                    break
+
         # 发布安装请求
         self._event_bus.install_request.emit({
             "name": name,
             "url": url,
             "source_type": source_type,
+            "winget_id": winget_id,
             "install_args": install_info["args"],
             "install_method": install_info["method"],
             "fallback": install_info["fallback"],
@@ -104,7 +116,7 @@ class SoftwareStorePlugin(BasePlugin):
                 else:
                     card.set_installed(False)
 
-    def _on_download_progress(self, gid: str, name: str, percent: int, speed: str):
+    def _on_download_progress(self, name: str, percent: int, speed: str):
         """下载进度回调"""
         if self._store_page:
             card = self._store_page.get_card_by_name(name)

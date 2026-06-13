@@ -170,9 +170,8 @@ class SilentInstaller(QObject):
         self._worker.start()
 
     def _on_worker_finished(self, name: str, file_path: str, fallback: str, result: dict):
-        """安装完成回调"""
+        """安装完成回调 — 不再自动降级，调用方自行决定重试"""
         if result.get("success"):
-            # 安装程序返回 0，进一步验证是否真的装上
             verified = SilentInstaller.check_installed(self._verify_data)
             if verified:
                 self.install_result.emit({
@@ -181,41 +180,10 @@ class SilentInstaller(QObject):
                     "message": "安装完成",
                 })
             else:
-                # returncode 0 但验证失败：可能装到了别处，尝试手动打开
-                if fallback == "manual":
-                    try:
-                        os.startfile(file_path)
-                        self.install_result.emit({
-                            "name": name,
-                            "success": True,
-                            "message": "安装验证未通过，已打开安装程序请手动完成",
-                        })
-                    except Exception as e:
-                        self.install_result.emit({
-                            "name": name,
-                            "success": False,
-                            "message": f"安装验证失败且无法打开安装程序: {e}",
-                        })
-                else:
-                    self.install_result.emit({
-                        "name": name,
-                        "success": False,
-                        "message": "安装程序返回成功但验证未通过",
-                    })
-        elif result.get("need_fallback") and fallback == "manual":
-            # 降级：打开安装程序让用户手动完成
-            try:
-                os.startfile(file_path)
-                self.install_result.emit({
-                    "name": name,
-                    "success": True,
-                    "message": "静默安装失败，已打开安装程序，请手动完成",
-                })
-            except Exception as e:
                 self.install_result.emit({
                     "name": name,
                     "success": False,
-                    "message": f"静默安装失败且无法打开安装程序: {e}",
+                    "message": "安装程序返回成功但验证未通过",
                 })
         else:
             self.install_result.emit({
@@ -269,3 +237,24 @@ class SilentInstaller(QObject):
                 return True
 
         return False
+
+    @staticmethod
+    def install_winget(package_id: str) -> dict:
+        """使用 winget 命令安装软件包。返回 {success, message}"""
+        try:
+            result = subprocess.run(
+                ["winget", "install", "--id", package_id,
+                 "--accept-source-agreements", "--accept-package-agreements"],
+                capture_output=True,
+                text=True,
+                timeout=300,
+            )
+            if result.returncode == 0:
+                return {"success": True, "message": "winget 安装完成"}
+            else:
+                error_msg = result.stderr.strip() or result.stdout.strip()
+                return {"success": False, "message": error_msg or f"winget 返回码 {result.returncode}"}
+        except subprocess.TimeoutExpired:
+            return {"success": False, "message": "winget 安装超时（5 分钟）"}
+        except FileNotFoundError:
+            return {"success": False, "message": "winget 未安装或不在 PATH 中"}
