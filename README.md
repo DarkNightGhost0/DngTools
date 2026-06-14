@@ -1,56 +1,47 @@
-# DngTools - Windows 11 工具箱
+# DngTools
 
-重装系统后一键装回常用软件，附带 VTuber 直播工具链管理与系统维护。
+Windows 11 桌面工具箱 — 软件管理 + VTuber 直播工具链 + 系统维护。
 
-## 核心功能
+## 功能
 
-- **软件商店** — 内置常用软件，分类展示，一键安装
-- **静默安装** — 自动下载后静默安装，支持降级策略
-- **下载管理** — Aria2 引擎，实时速度 / 进度显示
-- **安装验证** — 注册表 + 路径双重检查，确认安装成功
-- **多源下载** — winget → 直接链接 → Chocolatey 优先级回退
-- **VTuber 工具** — OBS Studio / VTube Studio 一键安装与插件管理
-- **系统维护** — 垃圾清理、启动项管理等
+**软件商店**
+分类浏览常用软件，一键下载安装。支持 winget / 直链 / Chocolatey 多源回退，Aria2 引擎实时速度显示，注册表 + 路径双重验证安装结果。
 
-## 架构
+**VTuber 工具**
+OBS Studio 与 VTube Studio 专用管理页：
+
+- 自动扫描本机安装路径，一键启动
+- OBS：Spout2 插件安装（ZIP / EXE，自动匹配版本）、NDI 套件安装（DistroAV / Runtime / Tools 多选）
+- VTube Studio：虚拟摄像头安装、去水印（代理 / SelfHook / Koaloader 三种模式）、插件管理器（BepInEx / XYPlugin / HD Screenshot / HD Spout / NDI to ArtMesh，支持安装检测与卸载）
+- 插件列表外部化 JSON 配置，可自行扩展
+
+**系统维护**
+垃圾清理、启动项管理等。
+
+**终端主页**
+类终端风格主页，展示系统信息，支持命令输入。
+
+## 结构
 
 ```
-core/               # 核心框架
-  event_bus           — 全局事件总线（PySide6 Signal）
-  plugin_manager      — 插件发现/加载/生命周期
-  config_manager      — JSON 配置文件管理
-  download_engine     — Aria2 JSON-RPC 封装
+core/                   # 框架层
+  event_bus             # 全局事件总线
+  plugin_manager        # 插件发现与生命周期
+  config_manager        # JSON 配置读写
+  download_engine       # Aria2 JSON-RPC 封装
 
 plugins/
-  home_page           — 主页（终端窗口 + 命令输入）
-  software_store      — 软件商店（列表 UI + 软件源管理）
-  download_task       — 下载任务（进度 UI + 队列）
-  install_task        — 静默安装（subprocess + 降级策略）
-  vtuber_tools        — VTuber 直播工具链
-  system_maintenance  — 系统维护
+  home_page             # 终端主页
+  software_store        # 软件商店
+  download_task         # 下载队列 UI
+  install_task          # 静默安装引擎
+  vtuber_tools          # VTuber 工具链
+  system_maintenance    # 系统维护
 
 ui/
-  main_window         — 主窗口（插件容器 + 全局状态栏）
-  sidebar             — 侧边栏导航
+  main_window           # 主窗口
+  sidebar               # 侧边栏导航
 ```
-
-插件通过 `event_bus` 松耦合通信：`install_request → download_complete → install_result`。
-
-## VTuber 工具
-
-为 OBS Studio 和 VTube Studio 提供一站式管理：
-
-| 工具 | OBS Studio | VTube Studio |
-|------|-----------|--------------|
-| 自动搜索 | 注册表 + 多路径探测 | Steam + 多路径探测 |
-| 安装 | Steam / winget / 直接下载 | Steam / 直接下载 |
-| Spout2 插件 | ZIP / EXE 安装，自动匹配 OBS 版本 | — |
-| NDI 插件 | winget 安装 DistroAV / NDI Runtime / NDI Tools（多选） | — |
-| 虚拟摄像头 | — | Unity Capture 安装 |
-| 去水印 | — | 代理 / SelfHook / Koaloader 三种模式 |
-| 插件管理 | — | BepInEx / XYPlugin / HD Screenshot / HD Spout / NDI to ArtMesh |
-
-配置目录 `plugins/vtuber_tools/config/plugin_list.json` 可扩展插件列表。
 
 ## 运行
 
@@ -59,7 +50,7 @@ pip install PySide6
 python main.py
 ```
 
-首次启动会自动下载 Aria2 到 `data/aria2c.exe`。
+首次启动自动下载 Aria2 到 `data/aria2c.exe`。
 
 ## 添加软件
 
@@ -84,7 +75,3 @@ python main.py
 pip install pyinstaller
 pyinstaller --onefile --windowed --add-data "data;data" main.py
 ```
-
-## 技术栈
-
-Python 3.11 + PySide6 + Aria2
