@@ -64,6 +64,7 @@ class DownloadTaskPlugin(BasePlugin):
                 "install_args": data.get("install_args", ""),
                 "install_method": data.get("install_method", "silent"),
                 "fallback": data.get("fallback", "manual"),
+                "verify": data.get("verify"),
             }
             print(f"[DownloadTask] 开始下载: {name} (gid={gid})")
         except Exception as e:
@@ -93,4 +94,5 @@ class DownloadTaskPlugin(BasePlugin):
             "install_args": install_info.get("install_args", ""),
             "install_method": install_info.get("install_method", "silent"),
             "fallback": install_info.get("fallback", "manual"),
+            "verify": install_info.get("verify"),
         })

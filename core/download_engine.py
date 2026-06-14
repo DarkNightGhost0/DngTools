@@ -171,7 +171,7 @@ class DownloadEngine(QObject):
 
                 total = int(status.get("totalLength", 0))
                 completed = int(status.get("completedLength", 0))
-                percent = int(completed / total * 100) if total > 0 else 0
+                percent = int(completed / total * 100) if total > 0 else -1
                 speed = self._format_speed(int(status.get("downloadSpeed", 0)))
 
                 state = status.get("status", "")

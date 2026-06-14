@@ -1,0 +1,63 @@
+[
+    {
+        "name": "BepInEx",
+        "description": "插件框架（64位），大多数 VTube Studio 插件的前置依赖",
+        "version": "5.4.23.5",
+        "url": "https://github.com/BepInEx/BepInEx/releases/download/v5.4.23.5/BepInEx_win_x64_5.4.23.5.zip",
+        "detect_dir": "BepInEx",
+        "install_dir": "",
+        "uninstall_dirs": ["BepInEx"],
+        "uninstall_files": [".doorstop_version", "changelog.txt",
+                            "doorstop_config.ini", "winhttp.dll"]
+    },
+    {
+        "name": "VTS_XYPlugin",
+        "description": "改进的插件框架，支持B站直播礼物掉落",
+        "version": "2.8.1",
+        "url": "https://github.com/xiaoye97/VTS_XYPlugin/releases/download/2.8.1/VTS_XYPlugin.2.8.1.zip",
+        "detect_dir": "XYPluginConfig",
+        "install_dir": "",
+        "uninstall_dirs": ["XYPluginConfig", "复制到弹幕机插件",
+                           "可选扩展脚本", "使用说明"],
+        "uninstall_files": ["doorstop_config.ini",
+                            "启动VTS_不通过Steam.bat",
+                            "启动VTS_不通过Steam_不接收B站数据.bat"]
+    },
+    {
+        "name": "VTS_HDScreenshot",
+        "description": "高清截图插件，支持 1080P / 2K / 4K / 8K / 16K 分辨率",
+        "version": "1.6.0",
+        "url": "https://github.com/xiaoye97/VTS_HDScreenshot/releases/download/1.6.0/VTS_HDScreenshot.1.6.0.zip",
+        "detect_file": "BepInEx\\plugins\\VTS_HDScreenshot.dll",
+        "install_dir": "BepInEx\\plugins",
+        "uninstall_dirs": [],
+        "uninstall_files": ["BepInEx\\plugins\\VTS_HDScreenshot.dll"]
+    },
+    {
+        "name": "VTS_HDSpout",
+        "description": "高分辨率 Spout 输出插件",
+        "version": "1.1.0",
+        "url": "https://github.com/xiaoye97/VTS_HDSpout/releases/download/1.1.0/VTS_HDSpout.1.1.0.zip",
+        "detect_file": "BepInEx\\plugins\\VTS_HDSpout.dll",
+        "install_dir": "BepInEx\\plugins",
+        "uninstall_dirs": [],
+        "uninstall_files": ["BepInEx\\plugins\\VTS_HDSpout.dll"]
+    },
+    {
+        "name": "VTS_NDIToArtMesh",
+        "description": "将 NDI 数据传输到模型 ArtMesh 上",
+        "version": "1.2",
+        "url": "https://github.com/xiaoye97/VTS_NDIToArtMesh/releases/download/1.2/VTS_NDIToArtMesh.zip",
+        "detect_file": "BepInEx\\plugins\\VTS_NDIToArtMesh.dll",
+        "install_dir": "BepInEx\\plugins",
+        "uninstall_dirs": [],
+        "uninstall_files": ["BepInEx\\plugins\\VTS_NDIToArtMesh.dll"],
+        "post_install_files": [
+            {
+                "path": "{desktop}\\模型名.NDIToArtMesh.json",
+                "content": "{\n  \"NDIName\": \"XYMAINPC (NVIDIA GeForce RTX 4090 1)\",\n  \"HorizontalFlip\": true,\n  \"VerticalFlip\": false,\n  \"ArtMeshNames\": [\n    \"Square2048\"\n  ]\n}\n"
+            }
+        ],
+        "post_install_message": "请在桌面上找到「模型名.NDIToArtMesh.json」，\n将文件名中的「模型名」替换为你的实际模型名，\n然后将文件放入 VTube Studio 的模型文件夹中。"
+    }
+]
