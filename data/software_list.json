@@ -154,5 +154,15 @@
     ],
     "install": { "method": "silent", "args": "/sAll /rs /msi EULA_ACCEPT=YES", "fallback": "manual" },
     "verify": { "registry": "Adobe Acrobat" }
+  },
+  {
+    "name": "OBS Studio",
+    "category": "影音",
+    "sources": [
+      { "type": "winget", "id": "OBSProject.OBSStudio" },
+      { "type": "direct", "url": "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-30.2.3-Windows-Installer.exe" }
+    ],
+    "install": { "method": "silent", "args": "/S", "fallback": "manual" },
+    "verify": { "registry": "OBS Studio", "paths": ["C:\\Program Files\\obs-studio\\bin\\64bit\\obs64.exe", "C:\\Program Files (x86)\\obs-studio\\bin\\64bit\\obs64.exe"] }
   }
 ]

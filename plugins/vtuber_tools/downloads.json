@@ -1,0 +1,61 @@
+{
+  "SmokeAPI": {
+    "name": "SmokeAPI",
+    "description": "Steam API 伪装库，用于代理/自挂模式去水印",
+    "versions": [
+      {
+        "version": "4.1.3",
+        "url": "https://github.com/acidicoala/SmokeAPI/releases/download/v4.1.3/SmokeAPI-v4.1.3.zip"
+      }
+    ]
+  },
+  "Koaloader": {
+    "name": "Koaloader",
+    "description": "DLL 代理加载器，用于 Koaloader 钩子模式",
+    "versions": [
+      {
+        "version": "3.0.4",
+        "url": "https://github.com/acidicoala/Koaloader/releases/download/v3.0.4/Koaloader-v3.0.4.zip"
+      }
+    ]
+  },
+  "Steam": {
+    "name": "Steam",
+    "description": "Steam 游戏平台",
+    "install_args": "/S",
+    "versions": [
+      {
+        "version": "winget",
+        "source_type": "winget",
+        "winget_id": "Valve.Steam"
+      },
+      {
+        "version": "latest",
+        "source_type": "direct",
+        "url": "https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe"
+      }
+    ]
+  },
+  "OBS Studio": {
+    "name": "OBS Studio",
+    "description": "开源直播推流软件",
+    "install_args": "/S",
+    "versions": [
+      {
+        "version": "winget",
+        "source_type": "winget",
+        "winget_id": "OBSProject.OBSStudio"
+      },
+      {
+        "version": "32.1.2",
+        "source_type": "direct",
+        "url": "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-32.1.2-Windows-x64-Installer.exe"
+      },
+      {
+        "version": "30.2.3",
+        "source_type": "direct",
+        "url": "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-30.2.3-Windows-Installer.exe"
+      }
+    ]
+  }
+}

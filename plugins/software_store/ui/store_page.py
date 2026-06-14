@@ -11,7 +11,43 @@ from PySide6.QtWidgets import (
     QPushButton,
     QVBoxLayout,
     QWidget,
+    QFrame,
 )
+
+STYLE_CARD = """
+    QFrame#sw_card {
+        background: #252526;
+        border-radius: 8px;
+        min-height: 44px;
+    }
+"""
+STYLE_CARD_BTN = """
+    QPushButton {
+        background: #0078d4;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 4px 14px;
+        font-size: 12px;
+    }
+    QPushButton:hover { background: #1a8fe3; }
+    QPushButton:pressed { background: #005a9e; }
+    QPushButton:disabled { background: #555; color: #999; }
+"""
+STYLE_CAT_BTN = """
+    QPushButton {
+        background: #333;
+        color: #aaa;
+        border: none;
+        border-radius: 14px;
+        padding: 4px 14px;
+        font-size: 12px;
+        margin-right: 4px;
+    }
+    QPushButton:hover { background: #444; color: #ccc; }
+    QPushButton:checked { background: #0078d4; color: #fff; }
+"""
+STYLE_TITLE = "QLabel { color: #ccc; font-size: 16px; font-weight: bold; }"
 
 
 class SoftwareCard(QWidget):
@@ -24,16 +60,26 @@ class SoftwareCard(QWidget):
         self.name = name
         self._installed = installed
 
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(8, 4, 8, 4)
+        outer = QVBoxLayout(self)
+        outer.setContentsMargins(0, 3, 0, 3)
+
+        frame = QFrame()
+        frame.setObjectName("sw_card")
+        frame.setStyleSheet(STYLE_CARD)
+        outer.addWidget(frame)
+
+        layout = QHBoxLayout(frame)
+        layout.setContentsMargins(14, 10, 14, 10)
 
         name_label = QLabel(name)
         name_label.setFont(QFont("Microsoft YaHei UI", 10))
+        name_label.setStyleSheet("color: #ccc; font-weight: bold;")
 
         cat_label = QLabel(category)
-        cat_label.setStyleSheet("color: #888;")
+        cat_label.setStyleSheet("color: #888; font-size: 11px; margin-left: 8px;")
 
         self._btn = QPushButton()
+        self._btn.setStyleSheet(STYLE_CARD_BTN)
         self._update_button()
         self._btn.clicked.connect(lambda: self.install_clicked.emit(self.name))
 
@@ -79,14 +125,14 @@ class StorePage(QWidget):
 
     def _init_ui(self):
         layout = QVBoxLayout(self)
+        layout.setContentsMargins(24, 20, 24, 20)
+        layout.setSpacing(14)
 
         # 搜索框
-        search_layout = QHBoxLayout()
         self._search_input = QLineEdit()
         self._search_input.setPlaceholderText("搜索软件...")
         self._search_input.textChanged.connect(self._on_search)
-        search_layout.addWidget(self._search_input)
-        layout.addLayout(search_layout)
+        layout.addWidget(self._search_input)
 
         # 分类标签行
         self._category_layout = QHBoxLayout()
@@ -95,7 +141,10 @@ class StorePage(QWidget):
 
         # 软件列表
         self._list_widget = QListWidget()
-        self._list_widget.setSpacing(2)
+        self._list_widget.setSpacing(1)
+        self._list_widget.setStyleSheet(
+            "QListWidget { background: transparent; border: none; }"
+        )
         layout.addWidget(self._list_widget)
 
     def set_software(self, software_list: list[dict], categories: list[str]):
@@ -117,6 +166,7 @@ class StorePage(QWidget):
         all_btn = QPushButton("全部")
         all_btn.setCheckable(True)
         all_btn.setChecked(True)
+        all_btn.setStyleSheet(STYLE_CAT_BTN)
         all_btn.clicked.connect(lambda: self._on_category(""))
         self._category_layout.addWidget(all_btn)
         self._category_buttons.append(all_btn)
@@ -124,6 +174,7 @@ class StorePage(QWidget):
         for cat in self._categories:
             btn = QPushButton(cat)
             btn.setCheckable(True)
+            btn.setStyleSheet(STYLE_CAT_BTN)
             btn.clicked.connect(lambda checked, c=cat: self._on_category(c))
             self._category_layout.addWidget(btn)
             self._category_buttons.append(btn)

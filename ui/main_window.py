@@ -54,6 +54,79 @@ class MainWindow(QMainWindow):
         font = QFont("Microsoft YaHei UI", 9)
         QApplication.setFont(font)
 
+        # 全局暗色主题样式
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #1e1e1e;
+                color: #cccccc;
+            }
+            QPushButton {
+                background: #0078d4;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+            QPushButton:hover { background: #1a8fe3; }
+            QPushButton:pressed { background: #005a9e; }
+            QPushButton:disabled { background: #555; color: #999; }
+            QPushButton:checked { background: #005a9e; }
+            QLineEdit {
+                background: #2d2d30;
+                color: #ccc;
+                border: 1px solid #404040;
+                border-radius: 6px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            QLineEdit:focus { border-color: #0078d4; }
+            QProgressBar {
+                background: #2d2d30;
+                border: none;
+                border-radius: 4px;
+                height: 6px;
+                text-align: center;
+            }
+            QProgressBar::chunk {
+                background: #0078d4;
+                border-radius: 4px;
+            }
+            QListWidget {
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+            QListWidget::item {
+                background: transparent;
+                margin: 2px 0;
+            }
+            QListWidget::item:hover {
+                background: #2d2d30;
+            }
+            QListWidget::item:selected {
+                background: #333;
+            }
+            QScrollBar:vertical {
+                background: #1e1e1e;
+                width: 8px;
+                border-radius: 4px;
+            }
+            QScrollBar::handle:vertical {
+                background: #555;
+                border-radius: 4px;
+                min-height: 30px;
+            }
+            QScrollBar::handle:vertical:hover { background: #777; }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+            QStatusBar {
+                background: #1e1e1e;
+                color: #888;
+                border-top: 1px solid #333;
+            }
+            QStatusBar QLabel { color: #888; background: transparent; }
+        """)
+
         # 中央 widget
         central = QWidget()
         self.setCentralWidget(central)
@@ -68,7 +141,6 @@ class MainWindow(QMainWindow):
 
         # 右侧内容区
         self._stack = QStackedWidget()
-        self._stack.setStyleSheet("background-color: #fafafa;")
         main_layout.addWidget(self._stack)
 
         self.sidebar.nav_changed.connect(self._on_nav_changed)

@@ -16,25 +16,27 @@ class Sidebar(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setFixedWidth(120)
+        self.setFixedWidth(140)
         self.setStyleSheet("""
             Sidebar {
-                background-color: #f0f0f0;
-                border-right: 1px solid #ddd;
+                background-color: #252526;
+                border-right: 1px solid #3c3c3c;
             }
             QPushButton {
                 text-align: left;
-                padding: 10px 12px;
+                padding: 12px 16px;
                 border: none;
-                border-radius: 4px;
-                margin: 2px 6px;
+                border-radius: 6px;
+                margin: 3px 8px;
                 font-size: 13px;
+                color: #cccccc;
             }
             QPushButton:hover {
-                background-color: #e0e0e0;
+                background-color: #3c3c3c;
             }
             QPushButton:checked {
-                background-color: #d0d0d0;
+                background-color: #0078d4;
+                color: #fff;
                 font-weight: bold;
             }
         """)

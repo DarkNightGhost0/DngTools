@@ -129,8 +129,8 @@ class HomePage(QWidget):
         # ── 顶部图片 ──
         banner = QLabel()
         banner.setAlignment(Qt.AlignCenter)
-        banner.setFixedHeight(200)
-        banner.setStyleSheet("background: #2b2b2b; border-radius: 8px;")
+        banner.setFixedHeight(180)
+        banner.setStyleSheet("background: #252526; border-radius: 10px; margin-bottom: 6px;")
         pixmap = QPixmap()
         img_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "banner.png")
         if os.path.exists(img_path):
@@ -138,8 +138,8 @@ class HomePage(QWidget):
         if pixmap.isNull():
             banner.setText("工具箱")
             banner.setStyleSheet(
-                "background: #2b2b2b; border-radius: 8px; color: #888; "
-                "font-size: 32px; font-weight: bold;"
+                "background: #252526; border-radius: 10px; margin-bottom: 6px;"
+                "color: #888; font-size: 32px; font-weight: bold;"
             )
         else:
             banner.setPixmap(pixmap.scaledToWidth(800, Qt.SmoothTransformation))
@@ -227,7 +227,7 @@ class HomePage(QWidget):
     def _build_action_card(self) -> QFrame:
         card = QFrame()
         card.setStyleSheet(
-            "QFrame { background: #2b2b2b; border-radius: 8px; padding: 20px; }"
+            "QFrame { background: #252526; border-radius: 10px; }"
         )
         layout = QVBoxLayout(card)
         layout.setAlignment(Qt.AlignCenter)
